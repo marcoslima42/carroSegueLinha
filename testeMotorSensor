@@ -1,0 +1,79 @@
+//C/C++
+
+//  FUNCOES E VARIAVEIS  DOS MOTORES
+
+//  MOTORES DA ESQUEDA
+
+#define meOut1  4
+#define meOut2  5
+
+//  MOTORES DA DIREITA
+
+#define mdOut3  6
+#define mdOut4  7
+
+// CONTROLA VELOCIDADE( EN)
+
+#define velMotorE  3 // aumenta a velocidade do motor esquerdo
+#define velMotor D 9 // aumenta a velocidade do motor direito
+
+void frente();
+
+void  tras();
+
+void para();
+
+void viraEsquerda();
+
+void virarDireita();
+
+//  FUNCAO E VARIACEIS  DOS  SENSORES
+
+//  VARARIAVEIS PARA O CALCULO DA DISTANCIA DO OBJETO EM CM.
+
+//  ULTRASONICO
+#define echoPin 11
+#define trigPin 10
+
+ int dis = 0; // verifica a distancia do objeto em relacao ao sensor
+ int dur = 0; // duracao do pulo do sensor 
+
+int obj();
+
+// IF
+
+#define IFe 13  // IF ESQUERDO
+#define IFc  12  //IF CENTRO
+#define IFd  8   //IF DIREITO
+
+void setup()
+{
+
+  Serial.begin(9600);
+
+//motores
+  pinMode(meOut1, OUTPUT);
+  pinMode(meOut2, OUTPUT); 
+  pinMode(mdOut3, OUTPUT);
+  pinMode(mdOut4, OUTPUT);
+  pinMode(velMotorE, OUTPUT);
+  pinMode(velMotorD, OUTPUT);
+
+//ultrasonico
+  pinMode(trigPin, OUTPUT); // acionador do sensor ultrasonico
+  pinMode(echoPin, INPUT); // eco do sensor ultrasonico
+
+//if
+
+ pinMode(IFe, INPUT); //IF ESQUERDO  
+ pinMode(IFc, INPUT); //IF CENTRO 
+ pinMode(IFd, INPUT); //IF DIREITO
+
+
+}
+
+void loop()
+{
+          dis = obj();// tem obstaculo na pista?
+
+          if(dis > 20){// NAO tem obstaculo na pista
